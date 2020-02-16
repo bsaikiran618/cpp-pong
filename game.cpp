@@ -36,7 +36,6 @@ void Game::startGame()
 {
 	SDL_Event event;
 	bool hasQuit = false;
-
 	while(!hasQuit)
 	{
 		while(SDL_PollEvent(&event))
@@ -46,20 +45,24 @@ void Game::startGame()
 				hasQuit = true;
 				break;
 			}
-			else
+			const Uint8 *keyState = SDL_GetKeyboardState(NULL);
+			if(keyState[SDL_SCANCODE_UP])
 			{
-				switch(event.key.keysym.sym)
-				{
-					case SDLK_UP: right_paddle->moveUp();
-					break;
-					case SDLK_DOWN:right_paddle->moveDown();
-					break;
-					case SDLK_w: left_paddle->moveUp();
-					break;
-					case SDLK_s: left_paddle->moveDown();
-					break;
-				}
+				right_paddle->moveUp();
 			}
+			if(keyState[SDL_SCANCODE_DOWN])
+			{
+				right_paddle->moveDown();
+			}
+			if(keyState[SDL_SCANCODE_W])
+			{
+				left_paddle->moveUp();
+			}
+			if(keyState[SDL_SCANCODE_S])
+			{
+				left_paddle->moveDown();
+			}
+
 		}
 		renderNextFrame();
 	}
