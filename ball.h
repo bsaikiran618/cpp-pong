@@ -3,8 +3,8 @@
 #define BALL_RADIUS 10
 #define BALL_INIT_X WIN_W/2.0
 #define BALL_INIT_Y WIN_H/2.0
-#define BALL_INIT_VX 0.1
-#define BALL_INIT_VY 0.1
+#define BALL_INIT_VX 0.5
+#define BALL_INIT_VY 0.5
 #include <SDL2/SDL.h>
 
 class Ball
@@ -23,6 +23,7 @@ class Ball
 		bool setVelocityX(float);
 		bool setVelocityY(float);
 		bool move();
+		void checkCollision();
 		void render(SDL_Renderer *);
 };
 #endif

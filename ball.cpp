@@ -2,7 +2,7 @@
 #include "ball.h"
 #include <SDL2/SDL.h>
 #include <cmath>
-
+#include <iostream>
 
 Ball::Ball(int r)
 :x(BALL_INIT_X),y(BALL_INIT_Y),radius(r),velocity_x(BALL_INIT_VX),velocity_y(BALL_INIT_VY)
@@ -17,11 +17,11 @@ float Ball::getVelocityY(){ return velocity_y;}
 
 bool Ball::setPosition(float new_x, float new_y)
 {
-	if(new_x<=0 || new_x>=WIN_W)
+	if(new_x<0 || new_x>WIN_W-radius)
 	{
 		return false;
 	}
-	if(new_y<=0 || new_y>=WIN_H)
+	if(new_y<0 || new_y>WIN_H-radius)
 	{
 		return false;
 	}
@@ -61,5 +61,18 @@ void Ball::render(SDL_Renderer *renderer)
 }
 bool Ball::move()
 {
+	checkCollision();
 	setPosition(getCurrentX()+velocity_x,getCurrentY()+velocity_y);
+}
+void Ball::checkCollision()
+{
+	if(y == WIN_H-radius || y==radius)
+	{
+		velocity_y *= -1;
+	}
+	if(x == WIN_W-radius || x == radius)
+	{
+		velocity_x *= -1;
+	}
+	std::cout << "VELOCITY (X) :" << velocity_x << std::endl;
 }
