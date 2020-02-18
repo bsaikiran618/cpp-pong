@@ -66,7 +66,7 @@ bool Ball::move()
 }
 void Ball::checkCollision(Paddle *left_paddle,Paddle *right_paddle)
 {
-	if(y == WIN_H-radius || y==radius) //collision with upper wall.
+	if(y == WIN_H-radius || y==radius) //collision upper and lower walls.
 	{
 		velocity_y *= -1;
 	}
@@ -80,7 +80,7 @@ void Ball::checkCollision(Paddle *left_paddle,Paddle *right_paddle)
 		if(x == right_paddle->getCurrentX() || x == right_paddle->getCurrentX()+PADDLE_WIDTH)
 			velocity_x *= -1;
 	}
-	if(x == WIN_W-radius || x == radius) //collision with lower wall.
+	if(x == WIN_W-radius || x == radius) //collision with left and right walls.
 	{
 		velocity_x *= -1;
 	}
