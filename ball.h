@@ -3,7 +3,7 @@
 #define BALL_RADIUS 10
 #define BALL_INIT_X WIN_W/2.0
 #define BALL_INIT_Y WIN_H/2.0
-#define BALL_INIT_VX 0.5
+#define BALL_INIT_VX 0.7
 #define BALL_INIT_VY 0
 #include <SDL2/SDL.h>
 #include "paddle.h"
