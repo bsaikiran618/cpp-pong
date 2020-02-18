@@ -26,6 +26,7 @@ void Game::renderNextFrame()
 	SDL_SetRenderDrawColor(renderer,0,0,0,0);
 	SDL_RenderClear(renderer);
 
+	ball->move();
 	left_paddle->render(renderer);
 	right_paddle->render(renderer);
 	ball->render(renderer);

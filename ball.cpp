@@ -5,17 +5,17 @@
 
 
 Ball::Ball(int r)
-:x(BALL_INIT_X),y(BALL_INIT_Y),radius(r)
+:x(BALL_INIT_X),y(BALL_INIT_Y),radius(r),velocity_x(BALL_INIT_VX),velocity_y(BALL_INIT_VY)
 {
 	
 }
 
-int Ball::getCurrentX(){ return x;}
-int Ball::getCurrentY(){ return y;}
+float Ball::getCurrentX(){ return x;}
+float Ball::getCurrentY(){ return y;}
 float Ball::getVelocityX(){ return velocity_x;}
 float Ball::getVelocityY(){ return velocity_y;}
 
-bool Ball::setPosition(int new_x, int new_y)
+bool Ball::setPosition(float new_x, float new_y)
 {
 	if(new_x<=0 || new_x>=WIN_W)
 	{
@@ -55,11 +55,11 @@ void Ball::render(SDL_Renderer *renderer)
 			int x_offset = int(rad* cosf(angle))%rad;
 			int y_offset = int(rad* sinf(angle))%rad;
 	
-			SDL_RenderDrawPoint(renderer,(x+x_offset),(y+y_offset));
+			SDL_RenderDrawPoint(renderer,int(x+x_offset),int(y+y_offset));
 		}
 	}
 }
 bool Ball::move()
 {
-	//yet to be written.
+	setPosition(getCurrentX()+velocity_x,getCurrentY()+velocity_y);
 }
