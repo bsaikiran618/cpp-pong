@@ -1,5 +1,6 @@
 #include "game.h"
 #include "ball.h"
+#include "paddle.h"
 #include <SDL2/SDL.h>
 #include <cmath>
 #include <iostream>
@@ -61,16 +62,25 @@ void Ball::render(SDL_Renderer *renderer)
 }
 bool Ball::move()
 {
-	checkCollision();
 	setPosition(getCurrentX()+velocity_x,getCurrentY()+velocity_y);
 }
-void Ball::checkCollision()
+void Ball::checkCollision(Paddle *left_paddle,Paddle *right_paddle)
 {
-	if(y == WIN_H-radius || y==radius)
+	if(y == WIN_H-radius || y==radius) //collision with upper wall.
 	{
 		velocity_y *= -1;
 	}
-	if(x == WIN_W-radius || x == radius)
+	if(y>=left_paddle->getCurrentY() && y<=left_paddle->getCurrentY()+PADDLE_HEIGHT) //collision with left paddle
+	{
+		if(x == left_paddle->getCurrentX() || x == left_paddle->getCurrentX()+PADDLE_WIDTH)
+			velocity_x *= -1;
+	}
+	if(y>=right_paddle->getCurrentY() && y<=right_paddle->getCurrentY()+PADDLE_HEIGHT) //collision with right paddle
+	{
+		if(x == right_paddle->getCurrentX() || x == right_paddle->getCurrentX()+PADDLE_WIDTH)
+			velocity_x *= -1;
+	}
+	if(x == WIN_W-radius || x == radius) //collision with lower wall.
 	{
 		velocity_x *= -1;
 	}

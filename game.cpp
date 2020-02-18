@@ -27,6 +27,7 @@ void Game::renderNextFrame()
 	SDL_RenderClear(renderer);
 
 	ball->move();
+	ball->checkCollision(left_paddle,right_paddle) ;// also checks collisions with walls.
 	left_paddle->render(renderer);
 	right_paddle->render(renderer);
 	ball->render(renderer);
