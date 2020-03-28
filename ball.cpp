@@ -5,10 +5,12 @@
 #include <cmath>
 #include <iostream>
 
+#define PI 3.14159
+
 Ball::Ball(int r)
 :x(BALL_INIT_X),y(BALL_INIT_Y),radius(r),velocity_x(BALL_INIT_VX),velocity_y(BALL_INIT_VY)
 {
-	
+
 }
 
 float Ball::getCurrentX(){ return x;}
@@ -58,7 +60,6 @@ void Ball::render(SDL_Renderer *renderer)
 
 	float angle;
 	float step = 0.05f;
-	float PI = 3.1415f;
 
 	for(int rad=radius;rad>0;rad-=1)
 	{
@@ -75,36 +76,93 @@ bool Ball::move()
 {
 	setPosition(getCurrentX()+velocity_x,getCurrentY()+velocity_y);
 }
+void Ball::checkPaddleCollision(Paddle * paddle)
+{
+	float top_x = x,top_y=y-BALL_RADIUS;
+	float left_x = x-BALL_RADIUS,left_y = y;
+	float right_x = x+BALL_RADIUS,right_y = y;
+	float bottom_x = x,bottom_y = y+BALL_RADIUS;
+	
+	//hits top face
+
+	if((bottom_x>=paddle->getCurrentX())&&(bottom_x<=(paddle->getCurrentX()+PADDLE_WIDTH)))
+		{
+		if((bottom_y>=paddle->getCurrentY())&&(bottom_y<=(paddle->getCurrentY()+PADDLE_HEIGHT)))
+		{
+			setVelocityY(getVelocityY()*-1);
+		}
+	}
+
+	//hits bottom face
+
+	if((top_x>=paddle->getCurrentX())&&(top_x<=(paddle->getCurrentX()+PADDLE_WIDTH)))
+	{
+		if((top_y>=paddle->getCurrentY())&&(top_y<=(paddle->getCurrentY()+PADDLE_HEIGHT)))
+		{
+			setVelocityY(getVelocityY()*-1);
+		}
+	}
+	//hits left face
+
+	if((right_y>=paddle->getCurrentY())&&(right_y <= (paddle->getCurrentY()+PADDLE_HEIGHT)))
+	{
+		if((right_x>=paddle->getCurrentX())&&(right_x<=(paddle->getCurrentX()+PADDLE_WIDTH)))
+		{
+			setVelocityX(getVelocityX()*-1);	
+
+			//change angle.
+			float mid_y = paddle->getCurrentY()+(PADDLE_HEIGHT/2);
+			float y_diff = left_y - mid_y;
+
+			velocity_y = (y_diff/PADDLE_HEIGHT)*(PI/2.0);
+		}
+	}
+
+	//hits right face
+
+    if((left_y>=paddle->getCurrentY())&&(left_y <= (paddle->getCurrentY()+PADDLE_HEIGHT)))
+	{
+		if((left_x>=paddle->getCurrentX())&&(left_x<=(paddle->getCurrentX()+PADDLE_WIDTH)))
+		{
+			setVelocityX(getVelocityX()*-1);
+
+			//change angle.
+			float mid_y = paddle->getCurrentY()+(PADDLE_HEIGHT/2);
+			float y_diff = left_y - mid_y;
+
+			velocity_y = (y_diff/PADDLE_HEIGHT)*(PI/2.0);
+		}
+	}
+}
 void Ball::checkCollision(Paddle *left_paddle,Paddle *right_paddle)
 {
-	if(y >= WIN_H-radius-1 || y <=radius) //collision upper and lower walls.
-	{
-		velocity_y *= -1;
-	}
-	if(y>=left_paddle->getCurrentY() && y<=left_paddle->getCurrentY()+PADDLE_HEIGHT) //collision with left paddle
-	{
-		if((x >= left_paddle->getCurrentX())&& (x<=left_paddle->getCurrentX()+PADDLE_WIDTH))
-			{
-				velocity_x *= -1;
-				
-				int y_difference = int(y - left_paddle->getCurrentY());
-				int segment_height = PADDLE_HEIGHT/8;
-				y_difference = int(y_difference / segment_height);
 
-				//change the y_velocity vector depending on the y_difference
+	float top_x = x,top_y=y-BALL_RADIUS;
+	float left_x = x-BALL_RADIUS,left_y = y;
+	float right_x = x+BALL_RADIUS,right_y = y;
+	float bottom_x = x,bottom_y = y+BALL_RADIUS;
 
-				velocity_y = BALL_INIT_VY + y_difference;
 
-			}
-	}
-	if(y>=right_paddle->getCurrentY() && y<=right_paddle->getCurrentY()+PADDLE_HEIGHT) //collision with right paddle
-	{
-		if((x >= right_paddle->getCurrentX()) && (x <= right_paddle->getCurrentX()+PADDLE_WIDTH))
-			velocity_x *= -1;
-	}
-	if(x >= WIN_W-radius-1 || x <= radius) //collision with left and right walls.
-	{
-		velocity_x *= -1;
-	}
-	std::cout << "VELOCITY (X) :" << velocity_x << std::endl;
+	// TEMP:
+		if(right_x>=WIN_W){setVelocityX(getVelocityX()*-1);}
+	// TEMP:
+
+		if(left_x<=0){setVelocityX(getVelocityX()*-1);}
+
+	//collision with ceiling
+
+	if(top_y<=0){setVelocityY(getVelocityY()*-1);}
+
+	//collision with floor
+
+	if(bottom_y>=WIN_H){setVelocityY(getVelocityY()*-1);}
+
+	//collision with left paddle
+
+	checkPaddleCollision(left_paddle);
+
+	//collision with right paddle
+
+	checkPaddleCollision(right_paddle);
+
 }
