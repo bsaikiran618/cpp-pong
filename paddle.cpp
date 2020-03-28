@@ -5,6 +5,7 @@ using namespace std;
 
 Paddle::Paddle(int x1,int y1)
 {
+	score = 0;
 	r.w = PADDLE_WIDTH;
 	r.h = PADDLE_HEIGHT;
 	r.x = x1;

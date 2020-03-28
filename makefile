@@ -1,5 +1,5 @@
-main : main.o game.o paddle.o ball.o
-	g++ main.o game.o paddle.o ball.o -lSDL2 -o main
+main : main.o game.o paddle.o ball.o arial.ttf
+	g++ main.o game.o paddle.o ball.o -lSDL2 -lSDL2_ttf -o main
 main.o: main.cpp game.h
 	g++ -c main.cpp
 game.o: game.cpp paddle.h game.h

@@ -16,6 +16,7 @@ class Paddle
 		SDL_Rect r;
 	public:
 		Paddle(int x1,int y1);
+		int score;
 		void render(SDL_Renderer *);
 		void moveUp();
 		void moveDown();

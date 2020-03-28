@@ -143,11 +143,20 @@ void Ball::checkCollision(Paddle *left_paddle,Paddle *right_paddle)
 	float bottom_x = x,bottom_y = y+BALL_RADIUS;
 
 
-	// TEMP:
-		if(right_x>=WIN_W){setVelocityX(getVelocityX()*-1);}
-	// TEMP:
+	//hit right WALL
+		if(right_x>=WIN_W)
+		{
 
-		if(left_x<=0){setVelocityX(getVelocityX()*-1);}
+			setVelocityX(getVelocityX()*-1);
+			left_paddle->score++;
+		}
+
+	//hit left wall.
+		if(left_x<=0)
+		{
+			setVelocityX(getVelocityX()*-1);
+			right_paddle->score++;
+		}
 
 	//collision with ceiling
 
