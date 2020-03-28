@@ -64,7 +64,7 @@ CONTROLS:
 HOW TO PLAY:
 ============
 
-	The game is a two-player game. Player 1 controls the right paddle and Player 2 controls the right paddle.
+	The game is a two-player game. Player 1 controls the left paddle and Player 2 controls the right paddle.
 	The ball must be hit by a player with the paddle and should be prevented from hitting the adjacent wall.
 	
 	The ball can be controlled in the folowing ways:
