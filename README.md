@@ -17,26 +17,11 @@ date:	28 March 2020
 	and possibly try to fix the bugs.
 
 
-										      !IMPORTANT!
-+-----------------------------------------------------------------------------------------------------------+
-| 																									 	    |
-| This game works only on Linux right now. If I find more free time, Ill try to port it to windows as well. |
-|																									 	    |
-+-----------------------------------------------------------------------------------------------------------+
+IMPORTANT!:
+=========
 
-HOW TO PLAY:
-============
+ This game works only on Linux right now. If I find more free time, Ill try to port it to windows as well. 
 
-	The game is a two-player game. Player 1 controls the right paddle and Player 2 controls the right paddle.
-	The ball must be hit by a player with the paddle and should be prevented from hitting the adjacent wall.
-	
-	The ball can be controlled in the folowing ways:
-		Hitting it with the lower end of the paddle will deflect it towards the floor.
-		Hitting it with the upper end of the paddle will deflect it towards the ceiling.
-		Hitting it right with the center of the paddle will make it travel parallel to the floor.
-	
-	If the ball hits the right wall, Player 1 gets 1 point. If the ball hits the left wall, Player 2 get a 
-	point. The player to score 5 points first wins the game.
 
 
 RUNNING THE GAME:
@@ -76,4 +61,18 @@ CONTROLS:
 		UP-ARROW-KEY (UP)
 		DOWN-ARROW-KEY (DOWN)
 
- Cheers! Enjoy! ;)
+HOW TO PLAY:
+============
+
+	The game is a two-player game. Player 1 controls the right paddle and Player 2 controls the right paddle.
+	The ball must be hit by a player with the paddle and should be prevented from hitting the adjacent wall.
+	
+	The ball can be controlled in the folowing ways:
+		Hitting it with the lower end of the paddle will deflect it towards the floor.
+		Hitting it with the upper end of the paddle will deflect it towards the ceiling.
+		Hitting it right with the center of the paddle will make it travel parallel to the floor.
+	
+	If the ball hits the right wall, Player 1 gets 1 point. If the ball hits the left wall, Player 2 get a 
+	point. The player to score 5 points first wins the game.
+
+Cheers! Enjoy! ;)
