@@ -21,7 +21,7 @@
 #define LEFT_RES_W 100
 #define LEFT_RES_H 70
 
-#define RIGHT_RES_X (WIN_W/2) + 400
+#define RIGHT_RES_X (WIN_W/2) + 100
 #define RIGHT_RES_Y WIN_H/2
 #define RIGHT_RES_W 100
 #define RIGHT_RES_H 70

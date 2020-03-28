@@ -1,2 +1,2 @@
-# CPPPong
+# Pong++
 pong written in c++
