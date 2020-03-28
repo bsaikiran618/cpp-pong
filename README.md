@@ -35,11 +35,13 @@ RUNNING THE GAME:
 
 	1)SDL2:
 
-	command:	sudo apt-get install libsdl2-dev
+	command (Debian Based Distros):	sudo apt-get install libsdl2-dev
+	command (Arch Based Distros):   sudo pacman -S sdl2
 
 	2)SDL_ttf font library:
 	
-	command:	sudo apt-get install libsdl2-ttf-dev
+	command (Debian Based Distros:	sudo apt-get install libsdl2-ttf-dev
+	command (Arch Based Distros):   sudo pacman -S sdl2_ttf lib32-sdl2_ttf
 
  BUILD:
  -----
