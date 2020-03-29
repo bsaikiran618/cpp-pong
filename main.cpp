@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 
 	try 
 	{
-		g = new Game("My Window");
+		g = new Game("Pong++");
 		g->startGame();
 	}
 	catch(...)
